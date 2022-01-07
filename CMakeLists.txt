@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11")
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  rospy
   roscpp
   std_msgs
   sensor_msgs
@@ -23,7 +24,7 @@ find_package(OpenCV 4.2 REQUIRED) # 找OpenCV 4.2 安装路径
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES kitti_tutorials
- CATKIN_DEPENDS roscpp std_msgs sensor_msgs cv_bridge image_transport
+ CATKIN_DEPENDS rospy roscpp std_msgs sensor_msgs cv_bridge image_transport
 #  DEPENDS system_lib
 )
 
@@ -44,3 +45,7 @@ include_directories(
 add_executable(cam_node src/cam_node.cpp)
 target_link_libraries(cam_node	${catkin_LIBRARIES})
 target_link_libraries(cam_node	${OpenCV_LIBS})
+
+
+add_executable(point_cloud_node src/point_cloud_node.cpp)
+target_link_libraries(point_cloud_node	${catkin_LIBRARIES})
